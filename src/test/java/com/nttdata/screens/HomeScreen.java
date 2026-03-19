@@ -56,17 +56,25 @@ public class HomeScreen extends PageObject {
 
     public void addProductToCart(String productName, int units) {
         waitForCatalog();
-        WebElement title_product = getDriver().findElement(MobileBy.AccessibilityId(productName));
-        title_product.click();
+
+        WebElement titleProduct = getDriver().findElement(MobileBy.AndroidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true))" +
+                        ".scrollIntoView(new UiSelector().description(\"" + productName + "\"))"
+        ));
+
+        titleProduct.click();
+
         if (units > 1) {
             WebElement plus = getDriver().findElement(MobileBy.AccessibilityId("Increase item quantity"));
             for (int i = 1; i < units; i++) {
                 plus.click();
             }
         }
+
         WebElement addBtn = getDriver().findElement(MobileBy.AccessibilityId("Tap to add product to cart"));
         addBtn.click();
     }
+
 
     public void esperarElemento(WebElement elemento){
         waitFor(ExpectedConditions.elementToBeClickable(elemento));

@@ -25,12 +25,4 @@ public class InHomeSteps {
         homeScreen.addProductToCart(producto, unidades);
     }
 
-    public void waitSeconds(int seconds) {
-        try {
-            Thread.sleep(seconds * 1000L);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new RuntimeException("Interrupted while waiting", e);
-        }
-    }
 }
